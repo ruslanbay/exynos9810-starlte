@@ -40,13 +40,13 @@
 
 Stock software updates history for Exynos9810-based devices:
 
-* [https://doc.samsungmobile.com/sm-g960f/dbt/doc.html S9 (SM-G960F), G960FXXUHFVG4, Android 10 (Q), 2022-03-01]
-* [https://doc.samsungmobile.com/sm-g965f/dbt/doc.html S9+ (SM-G965F), G965FXXUHFVG4, Android 10 (Q), 2022-03-01]
-* [https://doc.samsungmobile.com/sm-n960f/dbt/doc.html Note9 (SM-N960F), N960FXXU9FVH1, Android 10 (Q), 2022-07-01]
-* [https://doc.samsungmobile.com/sm-n770f/xef/doc.html Note10 Lite (SM-N770F), N770FXXS9HXA3, Android 13 (T), 2024-02-01]
-* [https://doc.samsungmobile.com/SM-T570/XSP/doc.html Tab Active3 (SM-T570), T570XXSFEYI1, Android 13 (T), 2025-10-01]
-* [https://doc.samsungmobile.com/sm-t575/dbt/doc.html Tab Active3 (SM-T575), T575XXSFEYI1, Android 13 (T), 2025-10-01]
-* [https://doc.samsungmobile.com/SM-T577U/XAC/doc.html Tab Active3 (SM-T577U), T577UVLSFEYI1, Android 13 (T), 2025-10-01]
+* [S9 (SM-G960F), G960FXXUHFVG4, Android 10 (Q), 2022-03-01](https://doc.samsungmobile.com/sm-g960f/dbt/doc.html)
+* [S9+ (SM-G965F), G965FXXUHFVG4, Android 10 (Q), 2022-03-01](https://doc.samsungmobile.com/sm-g965f/dbt/doc.html)
+* [Note9 (SM-N960F), N960FXXU9FVH1, Android 10 (Q), 2022-07-01](https://doc.samsungmobile.com/sm-n960f/dbt/doc.html)
+* [Note10 Lite (SM-N770F), N770FXXS9HXA3, Android 13 (T), 2024-02-01](https://doc.samsungmobile.com/sm-n770f/xef/doc.html)
+* [Tab Active3 (SM-T570), T570XXSFEYI1, Android 13 (T), 2025-10-01](https://doc.samsungmobile.com/SM-T570/XSP/doc.html)
+* [Tab Active3 (SM-T575), T575XXSFEYI1, Android 13 (T), 2025-10-01](https://doc.samsungmobile.com/sm-t575/dbt/doc.html)
+* [Tab Active3 (SM-T577U), T577UVLSFEYI1, Android 13 (T), 2025-10-01](https://doc.samsungmobile.com/SM-T577U/XAC/doc.html)
 
 Downstream kernels:
 
