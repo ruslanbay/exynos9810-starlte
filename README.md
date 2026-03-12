@@ -50,12 +50,20 @@ Stock software updates history for Exynos9810-based devices:
 
 Downstream kernels:
 
+* https://github.com/ruslanbay/linux/tree/G960FXXUHFVB4
+* https://github.com/ruslanbay/linux/tree/G960FXXUHFVK1
+* https://github.com/ruslanbay/linux/tree/T570XXSDEYC1
+* https://github.com/ruslanbay/linux/tree/N770FXXS9HXA3
+
+Download downstream kernels (zip):
+
 * https://opensource.samsung.com/uploadSearch?searchValue=sm-g96
 * https://opensource.samsung.com/uploadSearch?searchValue=sm-n96
 * https://opensource.samsung.com/uploadSearch?searchValue=n770
-* https://opensource.samsung.com/uploadSearch?searchValue=t575
+* https://opensource.samsung.com/uploadSearch?searchValue=t57
 
 Other links:
 
 * https://wiki.postmarketos.org/wiki/Samsung_Galaxy_S9_(samsung-starlte)
 * https://wiki.postmarketos.org/wiki/Samsung_Exynos_9810
+* https://wiki.lineageos.org/devices/starlte/
