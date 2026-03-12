@@ -54,3 +54,8 @@ Downstream kernels:
 * https://opensource.samsung.com/uploadSearch?searchValue=sm-n96
 * https://opensource.samsung.com/uploadSearch?searchValue=n770
 * https://opensource.samsung.com/uploadSearch?searchValue=t575
+
+Other links:
+
+* https://wiki.postmarketos.org/wiki/Samsung_Galaxy_S9_(samsung-starlte)
+* https://wiki.postmarketos.org/wiki/Samsung_Exynos_9810
