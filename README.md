@@ -1,3 +1,86 @@
+# Building the Mainline Linux Kernel
+
+## Install Dependencies
+```bash
+sudo apt install \
+  --no-install-recommends \
+  --no-install-suggests \
+  gcc-aarch64-linux-gnu \
+  make \
+  gcc \
+  libssl-dev # flex bison bc
+```
+
+## Set Build Environment
+```bash
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+```
+
+## Initialize Kernel Configuration
+```bash
+# Clean artifacts (optional)
+make mrproper
+
+# Generate base config
+make defconfig
+
+# Merge custom fragments
+./scripts/kconfig/merge_config.sh .config starlte.config
+
+# Customize settings (optional)
+make menuconfig
+```
+
+## Device Tree Validation
+
+### Syntax check only
+```bash
+make exynos/exynos9810-starlte.dtb
+```
+
+### Full schema validation
+
+#### Install required packages
+
+```bash
+sudo apt install \
+  --no-install-suggests \
+  --no-install-recommends \
+  python3-pip \
+  python3-venv \
+  python3-dev
+```
+
+#### Create and activate virtual environment
+```bash
+python3 -m venv ~/dt-env
+
+source ~/dt-env/bin/activate
+```
+
+#### Install dtschema
+```bash
+pip install dtschema
+```
+
+```bash
+make CHECK_DTBS=y -j$(nproc) exynos/exynos9810-starlte.dtb
+```
+
+#### Cleanup
+```bash
+deactivate
+```
+
+## Compile Kernel
+```bash
+make -j$(nproc)
+```
+
+
+# Hardware
+
 | Component              | Hardware                      | Mainline status                                                  |
 | ---------------------- | ----------------------------- | ---------------------------------------------------------------- |
 | SoC                    | Exynos 9810                   | ✅ [`arch/arm64/boot/dts/exynos/exynos9810.dtsi`](https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/exynos/exynos9810.dtsi)<br>✅ [`arch/arm64/boot/dts/exynos/exynos9810-starlte.dts`](https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts)<br>✅ [`arch/arm64/boot/dts/exynos/exynos9810-pinctrl.dtsi`](https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/exynos/exynos9810-pinctrl.dtsi)  |
@@ -37,6 +120,8 @@
 | NAND storage           | Samsung KLUCG2K1EA-B0C1 (UFS) | ✅ [`drivers/ufs`](https://github.com/torvalds/linux/tree/master/drivers/ufs)                                                   |
 
 ![image](assets/exynos-board-diagram.jpg)
+
+# Links
 
 Stock software updates history for Exynos9810-based devices:
 
