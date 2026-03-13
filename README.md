@@ -81,6 +81,8 @@ deactivate
 make -j$(nproc)
 ```
 
+---
+
 
 # Hardware
 
@@ -123,6 +125,8 @@ make -j$(nproc)
 | NAND storage           | Samsung KLUCG2K1EA-B0C1 (UFS) | ✅ [`drivers/ufs`](https://github.com/torvalds/linux/tree/master/drivers/ufs)                                                   |
 
 ![image](assets/exynos-board-diagram.jpg)
+
+---
 
 # Links
 
