@@ -8,7 +8,8 @@ sudo apt install \
   gcc-aarch64-linux-gnu \
   make \
   gcc \
-  libssl-dev # flex bison bc
+  libssl-dev \
+  flex # bison bc
 ```
 
 ## Set Build Environment
