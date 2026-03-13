@@ -18,6 +18,9 @@ export CROSS_COMPILE=aarch64-linux-gnu-
 ```
 
 ## Initialize Kernel Configuration
+
+Use [starlte.config](https://github.com/ruslanbay/exynos9810-starlte/blob/main/configs/starlte.config) for this step.
+
 ```bash
 # Clean artifacts (optional)
 make mrproper
