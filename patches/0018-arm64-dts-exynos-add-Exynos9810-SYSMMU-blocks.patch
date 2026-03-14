@@ -1,0 +1,31 @@
+From dc7747c2b9eac57fc82ae5924df985a77a6b0855 Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:18:59 +0100
+Subject: [PATCH 18/28] arm64: dts: exynos: add Exynos9810 SYSMMU blocks
+
+---
+ arch/arm64/boot/dts/exynos/exynos9810.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810.dtsi b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+index 063c8c724..8cd25f20a 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+@@ -600,6 +600,14 @@ dsim0_out: endpoint {
+ 				};
+ 			};
+ 		};
++
++		sysmmu_dpu: sysmmu@160a0000 {
++			compatible = "samsung,exynos-sysmmu";
++			reg = <0x160a0000 0x9000>;
++			interrupts = <GIC_SPI 211 IRQ_TYPE_LEVEL_HIGH>;
++			#iommu-cells = <0>;
++			status = "disabled";
++		};
+ 	};
+ 
+ 	timer {
+-- 
+2.53.0
+

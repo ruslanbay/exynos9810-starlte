@@ -1,0 +1,32 @@
+From a571e73786700b71fa279f02afcc3ec804b79666 Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Wed, 11 Mar 2026 14:06:41 +0000
+Subject: [PATCH 26/28] arm64: dts: exynos: starlte: enable RTC and watchdog
+ for robustness
+
+---
+ arch/arm64/boot/dts/exynos/exynos9810-starlte.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+index 24979df3a..bde901b23 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+@@ -290,6 +290,14 @@ &ufs_phy {
+ 	status = "okay";
+ };
+ 
++&rtc {
++	status = "okay";
++};
++
++&watchdog_cl0 {
++	status = "okay";
++};
++
+ / {
+ 	bluetooth {
+ 		compatible = "brcm,bcm4329-bt";
+-- 
+2.53.0
+

@@ -1,0 +1,25 @@
+From d0ed57f6a0be678fc578c54c6eaa4c62d3ea7d9d Mon Sep 17 00:00:00 2001
+From: Codex <codex@openai.com>
+Date: Fri, 13 Mar 2026 21:00:30 +0000
+Subject: [PATCH 28/28] arm64: dts: exynos: starlte: drop max77705
+ wakeup-source
+
+---
+ arch/arm64/boot/dts/exynos/exynos9810-starlte.dts | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+index f4743929e..c6e7db0a4 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+@@ -262,7 +262,6 @@ max77705: pmic@66 {
+ 		#interrupt-cells = <1>;
+ 		interrupt-parent = <&gpa1>;
+ 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
+-		wakeup-source;
+ 		pinctrl-0 = <&max77705_irq>;
+ 		pinctrl-names = "default";
+ 	};
+-- 
+2.53.0
+

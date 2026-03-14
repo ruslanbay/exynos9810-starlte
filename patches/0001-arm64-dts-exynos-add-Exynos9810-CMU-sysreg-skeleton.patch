@@ -1,0 +1,149 @@
+From 33200257996d3b85f4acd3a5630af36d22a65d58 Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:17:09 +0100
+Subject: [PATCH 01/28] arm64: dts: exynos: add Exynos9810 CMU/sysreg skeleton
+
+---
+ .../clock/samsung,exynos8895-clock.yaml       | 15 ++++--
+ .../devicetree/bindings/mfd/syscon.yaml       |  6 +++
+ arch/arm64/boot/dts/exynos/exynos9810.dtsi    | 51 +++++++++++++++++++
+ 3 files changed, 69 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/clock/samsung,exynos8895-clock.yaml b/Documentation/devicetree/bindings/clock/samsung,exynos8895-clock.yaml
+index 111de33ce..942de15ff 100644
+--- a/Documentation/devicetree/bindings/clock/samsung,exynos8895-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/samsung,exynos8895-clock.yaml
+@@ -32,8 +32,11 @@ properties:
+     enum:
+       - samsung,exynos8895-cmu-fsys0
+       - samsung,exynos8895-cmu-fsys1
++      - samsung,exynos9810-cmu-fsys1
+       - samsung,exynos8895-cmu-peric0
++      - samsung,exynos9810-cmu-peric0
+       - samsung,exynos8895-cmu-peric1
++      - samsung,exynos9810-cmu-peric1
+       - samsung,exynos8895-cmu-peris
+       - samsung,exynos8895-cmu-top
+ 
+@@ -89,7 +92,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: samsung,exynos8895-cmu-fsys1
++            enum:
++              - samsung,exynos8895-cmu-fsys1
++              - samsung,exynos9810-cmu-fsys1
+ 
+     then:
+       properties:
+@@ -113,7 +118,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: samsung,exynos8895-cmu-peric0
++            enum:
++              - samsung,exynos8895-cmu-peric0
++              - samsung,exynos9810-cmu-peric0
+ 
+     then:
+       properties:
+@@ -141,7 +148,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: samsung,exynos8895-cmu-peric1
++            enum:
++              - samsung,exynos8895-cmu-peric1
++              - samsung,exynos9810-cmu-peric1
+ 
+     then:
+       properties:
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index e57add2ba..b61c5daa5 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -122,6 +122,9 @@ select:
+           - rockchip,rv1126-qos
+           - st,spear1340-misc
+           - stericsson,nomadik-pmu
++          - samsung,exynos9810-peric0-sysreg
++          - samsung,exynos9810-peric1-sysreg
++          - samsung,exynos9810-fsys1-sysreg
+           - starfive,jh7100-sysmain
+           - ti,am62-opp-efuse-table
+           - ti,am62-usb-phy-ctrl
+@@ -235,6 +238,9 @@ properties:
+               - rockchip,rv1126-qos
+               - st,spear1340-misc
+               - stericsson,nomadik-pmu
++              - samsung,exynos9810-peric0-sysreg
++              - samsung,exynos9810-peric1-sysreg
++              - samsung,exynos9810-fsys1-sysreg
+               - starfive,jh7100-sysmain
+               - ti,am62-opp-efuse-table
+               - ti,am62-usb-phy-ctrl
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810.dtsi b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+index 01eba31f7..4eadf508d 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+@@ -171,6 +171,57 @@ chipid@10000000 {
+ 			reg = <0x10000000 0x100>;
+ 		};
+ 
++		cmu_peric0: clock-controller@10400000 {
++			compatible = "samsung,exynos9810-cmu-peric0";
++			reg = <0x10400000 0x8000>;
++			#clock-cells = <1>;
++			clocks = <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>;
++			clock-names = "oscclk", "bus", "uart",
++				      "usi0", "usi1", "usi2",
++				      "usi3";
++		};
++
++		cmu_peric1: clock-controller@10800000 {
++			compatible = "samsung,exynos9810-cmu-peric1";
++			reg = <0x10800000 0x8000>;
++			#clock-cells = <1>;
++			clocks = <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>;
++			clock-names = "oscclk", "bus", "speedy", "cam0",
++				      "cam1", "uart", "usi4", "usi5",
++				      "usi6", "usi7", "usi8", "usi9",
++				      "usi10", "usi11", "usi12", "usi13";
++		};
++
++		cmu_fsys1: clock-controller@11400000 {
++			compatible = "samsung,exynos9810-cmu-fsys1";
++			reg = <0x11400000 0x8000>;
++			#clock-cells = <1>;
++			clocks = <&oscclk>, <&oscclk>, <&oscclk>,
++				 <&oscclk>, <&oscclk>;
++			clock-names = "oscclk", "bus", "pcie",
++				      "ufs", "mmc";
++		};
++
++		syscon_peric0: syscon@10420000 {
++			compatible = "samsung,exynos9810-peric0-sysreg", "syscon";
++			reg = <0x10420000 0x2000>;
++		};
++
++		syscon_peric1: syscon@10820000 {
++			compatible = "samsung,exynos9810-peric1-sysreg", "syscon";
++			reg = <0x10820000 0x2000>;
++		};
++
++		syscon_fsys1: syscon@11420000 {
++			compatible = "samsung,exynos9810-fsys1-sysreg", "syscon";
++			reg = <0x11420000 0x2000>;
++		};
++
+ 		gic: interrupt-controller@10101000 {
+ 			compatible = "arm,gic-400";
+ 			reg = <0x10101000 0x1000>,
+-- 
+2.53.0
+

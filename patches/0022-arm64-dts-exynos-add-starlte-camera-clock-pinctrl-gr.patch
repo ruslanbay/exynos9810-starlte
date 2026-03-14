@@ -1,0 +1,51 @@
+From 63aa1d67a894c224c826544a250d7bb15e3437af Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:19:01 +0100
+Subject: [PATCH 22/28] arm64: dts: exynos: add starlte camera clock pinctrl
+ groundwork
+
+---
+ .../boot/dts/exynos/exynos9810-starlte.dts    | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+index d93701cf9..611061ea0 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+@@ -436,3 +436,33 @@ sd2_bus4: sd2-bus-width4-pins {
+ 		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV4>;
+ 	};
+ };
++
++&pinctrl_peric1 {
++	cam_mclk0: cam-mclk0-pins {
++		samsung,pins = "gpc1-4";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
++	};
++
++	cam_mclk1: cam-mclk1-pins {
++		samsung,pins = "gpc1-5";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
++	};
++
++	cam_mclk2: cam-mclk2-pins {
++		samsung,pins = "gpc1-6";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
++	};
++
++	cam_mclk3: cam-mclk3-pins {
++		samsung,pins = "gpc1-7";
++		samsung,pin-function = <EXYNOS_PIN_FUNC_2>;
++		samsung,pin-pud = <EXYNOS_PIN_PULL_NONE>;
++		samsung,pin-drv = <EXYNOS7_PIN_DRV_LV1>;
++	};
++};
+-- 
+2.53.0
+

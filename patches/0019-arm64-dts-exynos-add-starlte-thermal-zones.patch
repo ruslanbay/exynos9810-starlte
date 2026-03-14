@@ -1,0 +1,67 @@
+From 51abfdfb225ec4d09edc00bf1ee2b740fda52e5c Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:18:59 +0100
+Subject: [PATCH 19/28] arm64: dts: exynos: add starlte thermal zones
+
+---
+ .../boot/dts/exynos/exynos9810-starlte.dts    | 22 +++++++++++++++++++
+ arch/arm64/boot/dts/exynos/exynos9810.dtsi    | 10 +++++++++
+ 2 files changed, 32 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+index abedbef2e..37fdfc70b 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+@@ -74,6 +74,28 @@ memory@80000000 {
+ 		      <0x8 0x80000000 0x80000000>;
+ 	};
+ 
++	thermal-zones {
++		cpu-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++			thermal-sensors = <&tmuctrl_0>;
++
++			trips {
++				cpu_alert0: cpu-alert0 {
++					temperature = <75000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				cpu_crit0: cpu-crit0 {
++					temperature = <115000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810.dtsi b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+index 8cd25f20a..7d4c0fc5c 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+@@ -461,6 +461,16 @@ rtc: rtc@10590000 {
+ 			status = "disabled";
+ 		};
+ 
++		tmuctrl_0: tmu@10070000 {
++			compatible = "samsung,exynos7-tmu";
++			reg = <0x10070000 0x700>;
++			interrupts = <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>;
++			#thermal-sensor-cells = <0>;
++			clocks = <&oscclk>, <&oscclk>;
++			clock-names = "tmu_apbif", "tmu_sclk";
++			status = "disabled";
++		};
++
+ 		watchdog_cl0: watchdog@10050000 {
+ 			compatible = "samsung,exynos7-wdt";
+ 			reg = <0x10050000 0x100>;
+-- 
+2.53.0
+

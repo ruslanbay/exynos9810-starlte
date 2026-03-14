@@ -1,0 +1,45 @@
+From d0b1425199aa6862d3f4f78534db2c98d3bf95f5 Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:19:01 +0100
+Subject: [PATCH 21/28] arm64: dts: exynos: add starlte optional IMU/NFC nodes
+
+---
+ .../boot/dts/exynos/exynos9810-starlte.dts    | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+index 9b1438131..d93701cf9 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
++++ b/arch/arm64/boot/dts/exynos/exynos9810-starlte.dts
+@@ -205,6 +205,28 @@ touchscreen@48 {
+ 	};
+ };
+ 
++&hsi2c_12 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	imu@6a {
++		compatible = "st,lsm6dsm";
++		reg = <0x6a>;
++		status = "disabled";
++	};
++
++	nfc@27 {
++		compatible = "samsung,s3fwrn5-i2c";
++		reg = <0x27>;
++		interrupt-parent = <&gpa1>;
++		interrupts = <3 IRQ_TYPE_LEVEL_HIGH>;
++		en-gpios = <&gpg3 0 GPIO_ACTIVE_HIGH>;
++		wake-gpios = <&gpg3 1 GPIO_ACTIVE_HIGH>;
++		status = "disabled";
++	};
++};
++
+ &hsi2c_44 {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
+-- 
+2.53.0
+

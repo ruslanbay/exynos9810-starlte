@@ -1,0 +1,75 @@
+From 4a8bc4d67a5345c8805c3dac932e53c3341d8a8d Mon Sep 17 00:00:00 2001
+From: Ruslan Bay <ruslanbey@proton.me>
+Date: Mon, 9 Mar 2026 23:18:57 +0100
+Subject: [PATCH 14/28] arm64: dts: exynos: add Exynos9810 display host nodes
+
+---
+ arch/arm64/boot/dts/exynos/exynos9810.dtsi | 52 ++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/exynos/exynos9810.dtsi b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+index 6330bdaf4..063c8c724 100644
+--- a/arch/arm64/boot/dts/exynos/exynos9810.dtsi
++++ b/arch/arm64/boot/dts/exynos/exynos9810.dtsi
+@@ -548,6 +548,58 @@ usbdrd_phy: phy@11100000 {
+ 			#phy-cells = <1>;
+ 			status = "disabled";
+ 		};
++
++		decon_f: display-controller@16030000 {
++			compatible = "samsung,exynos7-decon";
++			reg = <0x16030000 0x10000>;
++			interrupts = <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 194 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "fifo", "vsync", "lcd_sys";
++			clocks = <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>;
++			clock-names = "pclk_decon0", "aclk_decon0",
++				      "decon0_eclk", "decon0_vclk";
++			status = "disabled";
++
++			port {
++				decon_f_out: endpoint {
++					remote-endpoint = <&dsim0_in>;
++				};
++			};
++		};
++
++		dsim0: dsi@16080000 {
++			compatible = "samsung,exynos7870-mipi-dsi";
++			reg = <0x16080000 0x10000>;
++			interrupts = <GIC_SPI 203 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&oscclk>, <&oscclk>, <&oscclk>, <&oscclk>;
++			clock-names = "bus", "pll", "byte", "esc";
++			samsung,esc-clock-frequency = <20000000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					dsim0_in: endpoint {
++						remote-endpoint = <&decon_f_out>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					dsim0_out: endpoint {
++						remote-endpoint = <&panel_in>;
++					};
++				};
++			};
++		};
+ 	};
+ 
+ 	timer {
+-- 
+2.53.0
+
